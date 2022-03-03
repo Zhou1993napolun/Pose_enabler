@@ -1,0 +1,126 @@
+2021-09-24 13:02:31,027 Namespace(cfg='/home/ran/hws/hrnet_0/experiments/mpii/hrnet/w32_256x256_adam_lr1e-3.yaml', dataDir='', logDir='', modelDir='', opts=[], prevModelDir='')
+2021-09-24 13:02:31,027 AUTO_RESUME: True
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+DATASET:
+  COLOR_RGB: True
+  DATASET: mpii
+  DATA_FORMAT: jpg
+  FLIP: True
+  HYBRID_JOINTS_TYPE: 
+  NUM_JOINTS_HALF_BODY: 8
+  PROB_HALF_BODY: -1.0
+  ROOT: /home/ran/hws/hrnet_0/data/
+  ROT_FACTOR: 30
+  SCALE_FACTOR: 0.25
+  SELECT_DATA: False
+  TEST_SET: valid
+  TRAIN_SET: train
+DATA_DIR: 
+DEBUG:
+  DEBUG: True
+  SAVE_BATCH_IMAGES_GT: True
+  SAVE_BATCH_IMAGES_PRED: True
+  SAVE_HEATMAPS_GT: True
+  SAVE_HEATMAPS_PRED: True
+GPUS: (0, 1)
+LOG_DIR: log
+LOSS:
+  TOPK: 8
+  USE_DIFFERENT_JOINTS_WEIGHT: False
+  USE_OHKM: False
+  USE_TARGET_WEIGHT: True
+MODEL:
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    PRETRAINED_LAYERS: ['conv1', 'bn1', 'conv2', 'bn2', 'layer1', 'transition1', 'stage2', 'transition2', 'stage3', 'transition3', 'stage4']
+    STAGE2:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4]
+      NUM_BRANCHES: 2
+      NUM_CHANNELS: [32, 64]
+      NUM_MODULES: 1
+    STAGE3:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4]
+      NUM_BRANCHES: 3
+      NUM_CHANNELS: [32, 64, 128]
+      NUM_MODULES: 4
+    STAGE4:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4, 4]
+      NUM_BRANCHES: 4
+      NUM_CHANNELS: [32, 64, 128, 256]
+      NUM_MODULES: 3
+  HEATMAP_SIZE: [64, 64]
+  IMAGE_SIZE: [256, 256]
+  INIT_WEIGHTS: True
+  NAME: pose_hrnet
+  NUM_JOINTS: 16
+  PRETRAINED: models/pytorch/imagenet/hrnet_w32-36af842e.pth
+  SIGMA: 2
+  TAG_PER_JOINT: True
+  TARGET_TYPE: gaussian
+OUTPUT_DIR: output
+PIN_MEMORY: True
+PRINT_FREQ: 100
+RANK: 0
+TEST:
+  BATCH_SIZE_PER_GPU: 32
+  BBOX_THRE: 1.0
+  COCO_BBOX_FILE: 
+  FLIP_TEST: True
+  IMAGE_THRE: 0.1
+  IN_VIS_THRE: 0.0
+  MODEL_FILE: 
+  NMS_THRE: 0.6
+  OKS_THRE: 0.5
+  POST_PROCESS: True
+  SHIFT_HEATMAP: True
+  SOFT_NMS: False
+  USE_GT_BBOX: False
+TRAIN:
+  BATCH_SIZE_PER_GPU: 8
+  BEGIN_EPOCH: 0
+  CHECKPOINT: 
+  END_EPOCH: 210
+  GAMMA1: 0.99
+  GAMMA2: 0.0
+  LR: 0.001
+  LR_FACTOR: 0.1
+  LR_STEP: [170, 200]
+  MOMENTUM: 0.9
+  NESTEROV: False
+  OPTIMIZER: adam
+  RESUME: False
+  SHUFFLE: True
+  WD: 0.0001
+WORKERS: 0
+2021-09-24 13:02:34,303 
+Total Parameters: 28,536,080
+----------------------------------------------------------------------------------------------------------------------------------
+Total Multiply Adds (For Convolution and Linear Layers only): 9.4931640625 GFLOPs
+----------------------------------------------------------------------------------------------------------------------------------
+Number of Layers
+Conv2d : 293 layers   BatchNorm2d : 292 layers   ReLU : 261 layers   Bottleneck : 4 layers   BasicBlock : 104 layers   Upsample : 28 layers   HighResolutionModule : 8 layers   
+2021-09-24 13:03:17,929 => load 22246 samples
+2021-09-24 13:03:22,952 => load 2958 samples
+2021-09-24 13:03:25,127 Epoch: [0][0/1391]	Time 2.152s (2.152s)	Speed 7.4 samples/s	Data 0.928s (0.928s)	Loss 6.39599 (6.39599)	Accuracy 0.016 (0.016)
+2021-09-24 13:05:58,835 Epoch: [0][100/1391]	Time 1.556s (1.543s)	Speed 10.3 samples/s	Data 1.068s (1.020s)	Loss 0.00682 (0.31272)	Accuracy 0.012 (0.006)
+2021-09-24 13:08:32,693 Epoch: [0][200/1391]	Time 1.436s (1.541s)	Speed 11.1 samples/s	Data 0.963s (1.022s)	Loss 0.00560 (0.15960)	Accuracy 0.000 (0.006)
+2021-09-24 13:11:01,850 Epoch: [0][300/1391]	Time 1.655s (1.524s)	Speed 9.7 samples/s	Data 1.091s (1.009s)	Loss 0.00273 (0.10759)	Accuracy 0.008 (0.006)
+2021-09-24 13:13:29,840 Epoch: [0][400/1391]	Time 1.402s (1.513s)	Speed 11.4 samples/s	Data 0.950s (0.999s)	Loss 0.00212 (0.08138)	Accuracy 0.000 (0.006)
+2021-09-24 13:15:57,130 Epoch: [0][500/1391]	Time 1.366s (1.505s)	Speed 11.7 samples/s	Data 0.883s (0.992s)	Loss 0.00191 (0.06558)	Accuracy 0.020 (0.007)
+2021-09-24 13:18:26,479 Epoch: [0][600/1391]	Time 1.561s (1.503s)	Speed 10.3 samples/s	Data 1.084s (0.991s)	Loss 0.00201 (0.05499)	Accuracy 0.004 (0.007)
+2021-09-24 13:20:53,229 Epoch: [0][700/1391]	Time 1.417s (1.498s)	Speed 11.3 samples/s	Data 0.923s (0.988s)	Loss 0.00187 (0.04739)	Accuracy 0.000 (0.007)
+2021-09-24 13:23:20,468 Epoch: [0][800/1391]	Time 1.603s (1.495s)	Speed 10.0 samples/s	Data 1.101s (0.985s)	Loss 0.00150 (0.04169)	Accuracy 0.013 (0.007)
+2021-09-24 13:25:48,591 Epoch: [0][900/1391]	Time 1.408s (1.493s)	Speed 11.4 samples/s	Data 0.917s (0.985s)	Loss 0.00150 (0.03724)	Accuracy 0.008 (0.007)
+2021-09-24 13:28:14,987 Epoch: [0][1000/1391]	Time 1.471s (1.491s)	Speed 10.9 samples/s	Data 0.872s (0.982s)	Loss 0.00163 (0.03368)	Accuracy 0.004 (0.007)
+2021-09-24 13:30:39,397 Epoch: [0][1100/1391]	Time 1.302s (1.486s)	Speed 12.3 samples/s	Data 0.824s (0.979s)	Loss 0.00151 (0.03076)	Accuracy 0.017 (0.007)
+2021-09-24 13:33:08,332 Epoch: [0][1200/1391]	Time 1.388s (1.487s)	Speed 11.5 samples/s	Data 0.922s (0.979s)	Loss 0.00144 (0.02832)	Accuracy 0.041 (0.009)
+2021-09-24 13:35:35,996 Epoch: [0][1300/1391]	Time 1.300s (1.486s)	Speed 12.3 samples/s	Data 0.791s (0.979s)	Loss 0.00147 (0.02626)	Accuracy 0.043 (0.011)
