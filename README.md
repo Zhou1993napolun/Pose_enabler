@@ -9,6 +9,7 @@ pip install -r requirement.txt
 
 And we need another weight file:
 `mobile_epoch2.pth` : The Link is : https://pan.baidu.com/s/1iQWBCaGYnizq80J-XsnrBw , And the password is: 1234
+
 `pose_hrnet_w48_384x288.pth` ： The Link is : https://pan.baidu.com/s/1V_CVoC7TpFi6UNxU0ScYeQ , And the password is: 1234
 
 
