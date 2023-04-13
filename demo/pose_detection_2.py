@@ -299,6 +299,7 @@ def main():
     special_cnt = 0
     state_name = "wait"
     cnt_list = []
+    time_start = time.time()
     if True:
         # cudnn related setting
         cudnn.benchmark = cfg.CUDNN.BENCHMARK
@@ -347,6 +348,7 @@ def main():
     #     return
 
     if args.webcam or args.video:
+        frame_index = 0
         if args.write:
             save_path = 'output.avi'
             fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -354,6 +356,7 @@ def main():
         while True:
             ret, image_bgr = vidcap.read()
             if ret:
+                frame_index += 1
                 last_time = time.time()
                 image = image_bgr[:, :, [2, 1, 0]]
 
@@ -421,8 +424,8 @@ def main():
                                         special_cnt = 0
                                     # print(class_result)
                                     # print(result_txt_name[max_loc])
-
-                                    image_bgr = cv2.putText(image_bgr, state_name, box[0], font, 1.2, (0, 0, 0), 2)
+                                    
+                                    image_bgr = cv2.putText(image_bgr, state_name, (int(box[0][0]),int(box[0][1])), font, 1.2, (0, 0, 0), 2)
                                 '''
                                 end
                                 '''
@@ -435,9 +438,14 @@ def main():
 
                 if args.write:
                     out.write(image_bgr)
-
+                    
+                '''
                 if on_cloud_host == False:
                     cv2.imshow('demo', image_bgr)
+                '''
+                print(f'当前为第{frame_index}帧')
+                print('用时 %.1f s' %(time.time() - last_time))
+                
                 if cv2.waitKey(1) & 0XFF == ord('q'):
                     break
             else:
@@ -536,7 +544,10 @@ def main():
         cv2.imshow('demo', image_bgr)
         if cv2.waitKey(0) & 0XFF == ord('q'):
             cv2.destroyAllWindows()
-
+    time_len = time.time() - time_start
+    print('用时 %.1f s' %(time.time() - last_time))
+    print('总用时 %.1f s' % time_len)
+    
 
 if __name__ == '__main__':
     main()
